@@ -1,4 +1,4 @@
-import logo from "../assets/logo-leboncoin.svg";
+import logo from "../assets/img/logo-leboncoin.svg";
 import { LuMenu } from "react-icons/lu";
 import Container from "./Container";
 
