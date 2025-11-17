@@ -12,9 +12,8 @@
   --color-green-bright: #05b67a;
   --default-font-family: "Nunito Sans", sans-serif;
 
-  --breakpoint-sm: 768px;
-  --breakpoint-md: 970px;
-  --breakpoint-lg: 1050px;
+  --breakpoint-lg: 970px;
+  --breakpoint-xl: 1050px;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
