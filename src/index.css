@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+@theme {
+  --color-orange-main: #ff6e13;
+  --color-orange-light: #ffe9de;
+  --color-blue-main: #094171;
+  --color-blue-light: #e5f2fd;
+  --color-grey-light: #f1f2f5;
+  --color-grey-font: #627c93;
+
+  --default-font-family: "Nunito Sans", sans-serif;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
