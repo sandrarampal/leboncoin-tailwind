@@ -2,12 +2,23 @@ import { FaStar } from "react-icons/fa6";
 import Delivery from "./Delivery";
 import HeartIcon from "./HeartIcon";
 import type { OffersProps } from "../types";
+import { useRef } from "react";
+import CarouselButton from "./CarouselButton";
 
 export default function Offers({ title, items }: OffersProps) {
+  const carouselRef = useRef<HTMLDivElement>(null);
+
+  const handleScroll = () => {
+    carouselRef.current?.scrollTo({ left: 0, behavior: "smooth" });
+  };
+
   return (
     <div className="mt-3">
       <h2 className="font-bold">{title}</h2>
-      <div className="hide-scrollbar flex gap-4 overflow-scroll">
+      <div
+        className="hide-scrollbar flex items-center gap-4 overflow-scroll"
+        ref={carouselRef}
+      >
         {items.map((item) => {
           return (
             <div key={item.id} className="shrink-0">
@@ -37,11 +48,15 @@ export default function Offers({ title, items }: OffersProps) {
                   <p>{item.place}</p>
                   <p>{item.date}</p>
                 </div>
+
                 <HeartIcon />
               </div>
             </div>
           );
         })}
+        <div className="pb-30">
+          <CarouselButton onClick={handleScroll} />
+        </div>
       </div>
     </div>
   );

@@ -1,13 +1,23 @@
 import data from "../assets/data/data.json";
 import type { TCategory } from "../types";
+import CarouselButton from "./CarouselButton";
+import { useRef } from "react";
 
 export default function Categories() {
   const categories: TCategory[] = data.categories;
+  const carouselRef = useRef<HTMLDivElement>(null);
+
+  const handleScroll = () => {
+    carouselRef.current?.scrollTo({ left: 0, behavior: "smooth" });
+  };
 
   return (
     <div className="mt-9">
       <h1 className="pb-3 text-xl font-bold">Top catégories</h1>
-      <div className="hide-scrollbar flex gap-3 overflow-scroll">
+      <div
+        className="hide-scrollbar flex items-center gap-3 overflow-scroll"
+        ref={carouselRef}
+      >
         {categories.map((category) => {
           return (
             <div key={category.id} className="relative shrink-0">
@@ -24,6 +34,9 @@ export default function Categories() {
             </div>
           );
         })}
+        <div className="pb-6">
+          <CarouselButton onClick={handleScroll} />
+        </div>
       </div>
     </div>
   );
