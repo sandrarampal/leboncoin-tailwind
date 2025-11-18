@@ -1,7 +1,8 @@
 import data from "../assets/data/data.json";
+import type { TCategory } from "../types";
 
 export default function Categories() {
-  const categories = data.categories;
+  const categories: TCategory[] = data.categories;
 
   return (
     <div className="mt-9">
@@ -10,7 +11,7 @@ export default function Categories() {
         {categories.map((category) => {
           return (
             <div key={category.id} className="relative shrink-0">
-              <div className="h-32 w-32 overflow-hidden rounded-xl bg-amber-300">
+              <div className="h-32 w-32 overflow-hidden rounded-xl">
                 <img
                   src={category.image}
                   alt={`illustration de la catégorie ${category.title}`}

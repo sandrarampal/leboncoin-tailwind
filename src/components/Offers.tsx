@@ -1,25 +1,7 @@
 import { FaStar } from "react-icons/fa6";
 import Delivery from "./Delivery";
 import HeartIcon from "./HeartIcon";
-
-interface OfferItem {
-  id: number;
-  avatar: string;
-  username: string;
-  stars?: number;
-  comments?: number;
-  image: string;
-  title: string;
-  price: number;
-  delivery?: boolean;
-  place: string;
-  date: string;
-}
-
-interface OffersProps {
-  title: string;
-  items: OfferItem[];
-}
+import type { OffersProps } from "../types";
 
 export default function Offers({ title, items }: OffersProps) {
   return (
@@ -50,7 +32,7 @@ export default function Offers({ title, items }: OffersProps) {
                 </div>
               </div>
               <div className="h-8">{item.delivery && <Delivery />}</div>
-              <div className="mt-2 flex justify-between">
+              <div className="mt-2 mb-3 flex justify-between">
                 <div className="text-grey-font text-xs">
                   <p>{item.place}</p>
                   <p>{item.date}</p>
