@@ -1,6 +1,7 @@
 import { FaHeart } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
 import { useState } from "react";
+import { memo } from "react";
 
 // Définir une interface pour les props
 interface HeartIconProps {
@@ -8,7 +9,7 @@ interface HeartIconProps {
   removeItem: () => void;
 }
 
-export default function HeartIcon({ addItem, removeItem }: HeartIconProps) {
+const HeartIcon = ({ addItem, removeItem }: HeartIconProps) => {
   const [like, setLike] = useState(false);
 
   const handleClick = () => {
@@ -27,4 +28,6 @@ export default function HeartIcon({ addItem, removeItem }: HeartIconProps) {
       {like ? <FaHeart className="text-red-500" /> : <FaRegHeart />}
     </button>
   );
-}
+};
+
+export default memo(HeartIcon);

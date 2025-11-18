@@ -1,12 +1,9 @@
 import data from "../assets/data/data.json";
 import Offers from "./Offers";
 import type { OffersAllProps } from "../types";
+import { memo } from "react";
 
-export default function OffersAll({
-  addToFav,
-  removeFromFav,
-  setFav,
-}: OffersAllProps) {
+const OffersAll = ({ addToFav, removeFromFav, setFav }: OffersAllProps) => {
   const tablets = data.products.tablets;
   const consols = data.products.consols;
 
@@ -29,4 +26,6 @@ export default function OffersAll({
       />
     </div>
   );
-}
+};
+
+export default memo(OffersAll);

@@ -4,13 +4,9 @@ import HeartIcon from "./HeartIcon";
 import type { OffersProps } from "../types";
 import { useRef } from "react";
 import CarouselButton from "./CarouselButton";
+import { memo } from "react";
 
-export default function Offers({
-  title,
-  items,
-  addToFav,
-  removeFromFav,
-}: OffersProps) {
+const Offers = ({ title, items, addToFav, removeFromFav }: OffersProps) => {
   const carouselRef = useRef<HTMLDivElement>(null);
 
   const handleScroll = () => {
@@ -68,4 +64,6 @@ export default function Offers({
       </div>
     </div>
   );
-}
+};
+
+export default memo(Offers);

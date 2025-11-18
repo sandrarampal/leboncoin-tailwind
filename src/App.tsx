@@ -5,7 +5,7 @@ import Categories from "./components/Categories";
 import OffersAll from "./components/OffersAll";
 import Footer from "./components/Footer";
 import Modal from "./components/Modal";
-import { useState } from "react";
+import { useState, useMemo, useCallback } from "react";
 import type { OfferItem } from "./types";
 import calculateTotal from "./utils/calculateTotal";
 
@@ -13,16 +13,15 @@ function App() {
   const [fav, setFav] = useState<OfferItem[] | []>([]);
   const [showModal, setShowModal] = useState(false);
 
-  const total = calculateTotal(fav);
+  const total = useMemo(() => calculateTotal(fav), [fav]);
 
-  const addToFav = (item: OfferItem): void => {
+  const addToFav = useCallback((item: OfferItem): void => {
     setFav((prev) => [...prev, item]);
-  };
+  }, []);
 
-  const removeFromFav = (item: OfferItem): void => {
+  const removeFromFav = useCallback((item: OfferItem): void => {
     setFav((prev) => prev.filter((favItem) => favItem.id !== item.id));
-  };
-
+  }, []);
   return (
     <div>
       <Header fav={fav} setShowModal={setShowModal} />
