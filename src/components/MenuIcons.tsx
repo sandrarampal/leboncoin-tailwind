@@ -3,11 +3,14 @@ import { CiBellOn } from "react-icons/ci";
 import { FaRegHeart } from "react-icons/fa";
 import { MdOutlineMessage } from "react-icons/md";
 import { FiUser } from "react-icons/fi";
+import type { TFav, TSetShowModal } from "../types";
 
-export default function MenuIcons() {
+export default function MenuIcons({ fav, setShowModal }: TFav & TSetShowModal) {
+  const numberofFav = fav.length;
+
   return (
-    <div>
-      <ul className="flex w-100 gap-2 overflow-hidden">
+    <div className="flex h-15 items-center">
+      <ul className="flex h-full w-100 items-center gap-3 overflow-hidden">
         <li className="flex flex-col items-center justify-center">
           <MdDarkMode />
           <p className="text-xs">Thème</p>
@@ -16,8 +19,13 @@ export default function MenuIcons() {
           <CiBellOn />
           <p className="text-xs">Mes recherches</p>
         </li>
-        <li className="flex flex-col items-center justify-center">
-          <FaRegHeart />
+        <li className="relative flex h-10 flex-col items-center justify-center hover:cursor-pointer">
+          {numberofFav > 0 && (
+            <div className="absolute bottom-5.5 left-5 flex h-5 w-5 items-center justify-center rounded-xl bg-red-500 p-2 text-sm text-white">
+              <p>{numberofFav}</p>
+            </div>
+          )}
+          <FaRegHeart onClick={() => setShowModal(true)} />
           <p className="text-xs">Favoris</p>
         </li>
         <li className="flex flex-col items-center justify-center">

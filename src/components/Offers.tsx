@@ -5,7 +5,12 @@ import type { OffersProps } from "../types";
 import { useRef } from "react";
 import CarouselButton from "./CarouselButton";
 
-export default function Offers({ title, items }: OffersProps) {
+export default function Offers({
+  title,
+  items,
+  addToFav,
+  removeFromFav,
+}: OffersProps) {
   const carouselRef = useRef<HTMLDivElement>(null);
 
   const handleScroll = () => {
@@ -49,7 +54,10 @@ export default function Offers({ title, items }: OffersProps) {
                   <p>{item.date}</p>
                 </div>
 
-                <HeartIcon />
+                <HeartIcon
+                  addItem={() => addToFav(item)}
+                  removeItem={() => removeFromFav(item)}
+                />
               </div>
             </div>
           );

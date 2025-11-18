@@ -18,7 +18,24 @@ export type OfferItem = {
   date: string;
 };
 
+export type TFav = {
+  fav: OfferItem[];
+};
+
+export type OffersAllProps = {
+  addToFav: (item: OfferItem) => void;
+  removeFromFav: (item: OfferItem) => void;
+  setFav: React.Dispatch<React.SetStateAction<[] | OfferItem[]>>;
+};
+
 export type OffersProps = {
   title: string;
   items: OfferItem[];
+  addToFav: (item: OfferItem) => void;
+  removeFromFav: (item: OfferItem) => void;
+  setFav: React.Dispatch<React.SetStateAction<OfferItem[]>>;
+};
+
+export type TSetShowModal = {
+  setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
 };
