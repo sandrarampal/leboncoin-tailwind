@@ -26,6 +26,7 @@ export type OffersAllProps = {
   addToFav: (item: OfferItem) => void;
   removeFromFav: (item: OfferItem) => void;
   setFav: React.Dispatch<React.SetStateAction<[] | OfferItem[]>>;
+  darkMode: boolean;
 };
 
 export type OffersProps = {
@@ -34,8 +35,13 @@ export type OffersProps = {
   addToFav: (item: OfferItem) => void;
   removeFromFav: (item: OfferItem) => void;
   setFav: React.Dispatch<React.SetStateAction<OfferItem[]>>;
+  darkMode: boolean;
 };
 
 export type TSetShowModal = {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export type TSetDarkMode = {
+  setDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
 };

@@ -7,9 +7,10 @@ import { memo } from "react";
 interface HeartIconProps {
   addItem: () => void;
   removeItem: () => void;
+  darkMode: boolean;
 }
 
-const HeartIcon = ({ addItem, removeItem }: HeartIconProps) => {
+const HeartIcon = ({ addItem, removeItem, darkMode }: HeartIconProps) => {
   const [like, setLike] = useState(false);
 
   const handleClick = () => {
@@ -25,7 +26,11 @@ const HeartIcon = ({ addItem, removeItem }: HeartIconProps) => {
 
   return (
     <button className="hover:cursor-pointer" onClick={handleClick}>
-      {like ? <FaHeart className="text-red-500" /> : <FaRegHeart />}
+      {like ? (
+        <FaHeart className={`text-red-500`} />
+      ) : (
+        <FaRegHeart className={darkMode ? "text-white" : ""} />
+      )}
     </button>
   );
 };

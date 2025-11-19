@@ -6,7 +6,13 @@ import { useRef } from "react";
 import CarouselButton from "./CarouselButton";
 import { memo } from "react";
 
-const Offers = ({ title, items, addToFav, removeFromFav }: OffersProps) => {
+const Offers = ({
+  title,
+  items,
+  addToFav,
+  removeFromFav,
+  darkMode,
+}: OffersProps) => {
   const carouselRef = useRef<HTMLDivElement>(null);
 
   const handleScroll = () => {
@@ -15,7 +21,7 @@ const Offers = ({ title, items, addToFav, removeFromFav }: OffersProps) => {
 
   return (
     <div className="mt-3">
-      <h2 className="font-bold">{title}</h2>
+      <h2 className={`font-bold ${darkMode ? "text-white" : ""}`}>{title}</h2>
       <div
         className="hide-scrollbar flex items-center gap-4 overflow-scroll"
         ref={carouselRef}
@@ -23,7 +29,9 @@ const Offers = ({ title, items, addToFav, removeFromFav }: OffersProps) => {
         {items.map((item) => {
           return (
             <div key={item.id} className="shrink-0">
-              <div className="mt-3 flex max-w-40 items-center gap-1 overflow-hidden">
+              <div
+                className={`mt-3 flex max-w-40 items-center gap-1 overflow-hidden ${darkMode ? "text-white" : ""}`}
+              >
                 <img className="h-8 rounded-3xl" src={item.avatar} alt="" />
                 <p className="max-w-20 truncate font-bold">{item.username}</p>
                 {item.stars && <FaStar className="text-orange-dark" />}
@@ -32,11 +40,11 @@ const Offers = ({ title, items, addToFav, removeFromFav }: OffersProps) => {
                   <p className="text-xs">({item.comments})</p>
                 )}{" "}
               </div>
-              <div className="mb-3 h-72 w-42">
+              <div className={`mb-3 h-72 w-42 ${darkMode ? "text-white" : ""}`}>
                 <img
                   src={item.image}
                   alt="image du produit"
-                  className="mt-2 h-48 w-full rounded-lg object-cover"
+                  className="mt-2 mb-2 h-48 w-full rounded-lg object-cover"
                 />
                 <div className="font-bold">
                   <p>{item.title}</p>
@@ -53,6 +61,7 @@ const Offers = ({ title, items, addToFav, removeFromFav }: OffersProps) => {
                 <HeartIcon
                   addItem={() => addToFav(item)}
                   removeItem={() => removeFromFav(item)}
+                  darkMode={darkMode}
                 />
               </div>
             </div>

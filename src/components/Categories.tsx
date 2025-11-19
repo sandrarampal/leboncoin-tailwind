@@ -3,7 +3,7 @@ import type { TCategory } from "../types";
 import CarouselButton from "./CarouselButton";
 import { useRef } from "react";
 
-export default function Categories() {
+export default function Categories({ darkMode }: { darkMode: boolean }) {
   const categories: TCategory[] = data.categories;
   const carouselRef = useRef<HTMLDivElement>(null);
 
@@ -13,7 +13,9 @@ export default function Categories() {
 
   return (
     <div className="mt-9">
-      <h1 className="pb-3 text-xl font-bold">Top catégories</h1>
+      <h1 className={`pb-3 text-xl font-bold ${darkMode ? "text-white" : ""}`}>
+        Top catégories
+      </h1>
       <div
         className="hide-scrollbar flex items-center gap-3 overflow-scroll"
         ref={carouselRef}

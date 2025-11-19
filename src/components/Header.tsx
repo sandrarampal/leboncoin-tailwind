@@ -4,11 +4,20 @@ import Container from "./Container";
 import SearchIcon from "./SearchIcon";
 import Button from "./Button";
 import MenuIcons from "./MenuIcons";
-import type { TFav, TSetShowModal } from "../types";
+import type { TFav, TSetShowModal, TSetDarkMode } from "../types";
 
-export default function Header({ fav, setShowModal }: TFav & TSetShowModal) {
+type THeaderProps = TFav & TSetShowModal & TSetDarkMode & { darkMode: boolean };
+
+export default function Header({
+  fav,
+  setShowModal,
+  setDarkMode,
+  darkMode,
+}: THeaderProps) {
   return (
-    <div className="border-grey-light border-b pt-3 pb-3">
+    <div
+      className={`border-grey-light border-b pt-3 pb-3 ${darkMode ? "bg-blue-dark text-white" : ""}`}
+    >
       <Container>
         <LuMenu className="text-blue-main fixed mt-2 text-4xl lg:hidden" />
         <div className="h-full lg:flex lg:items-center lg:justify-between lg:gap-4">
@@ -27,7 +36,11 @@ export default function Header({ fav, setShowModal }: TFav & TSetShowModal) {
             />
           </div>
           <div className="hidden h-full lg:block lg:overflow-hidden">
-            <MenuIcons fav={fav} setShowModal={setShowModal} />
+            <MenuIcons
+              fav={fav}
+              setShowModal={setShowModal}
+              setDarkMode={setDarkMode}
+            />
           </div>
         </div>
         <ul className="hide-scrollbar flex items-center gap-4 overflow-scroll pt-3 text-xs">
