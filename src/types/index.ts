@@ -23,18 +23,14 @@ export type TFav = {
 };
 
 export type OffersAllProps = {
-  addToFav: (item: OfferItem) => void;
-  removeFromFav: (item: OfferItem) => void;
-  setFav: React.Dispatch<React.SetStateAction<[] | OfferItem[]>>;
+  dispatch: React.Dispatch<any>;
   darkMode: boolean;
 };
 
 export type OffersProps = {
   title: string;
   items: OfferItem[];
-  addToFav: (item: OfferItem) => void;
-  removeFromFav: (item: OfferItem) => void;
-  setFav: React.Dispatch<React.SetStateAction<OfferItem[]>>;
+  dispatch: React.Dispatch<any>;
   darkMode: boolean;
 };
 
@@ -45,3 +41,18 @@ export type TSetShowModal = {
 export type TSetDarkMode = {
   setDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
 };
+
+export type TState = {
+  total: number;
+  fav: OfferItem[];
+};
+
+export type TAction =
+  | {
+      type: "add_to_fav";
+      payload: OfferItem;
+    }
+  | {
+      type: "remove_from_fav";
+      payload: OfferItem;
+    };

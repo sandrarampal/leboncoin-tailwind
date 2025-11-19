@@ -2,26 +2,24 @@ import { FaHeart } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
 import { useState } from "react";
 import { memo } from "react";
+import type { OfferItem } from "../types";
 
 // Définir une interface pour les props
 interface HeartIconProps {
-  addItem: () => void;
-  removeItem: () => void;
+  dispatch: React.Dispatch<any>;
   darkMode: boolean;
+  item: OfferItem;
 }
 
-const HeartIcon = ({ addItem, removeItem, darkMode }: HeartIconProps) => {
+const HeartIcon = ({ dispatch, darkMode, item }: HeartIconProps) => {
   const [like, setLike] = useState(false);
 
   const handleClick = () => {
-    const newLikeState = !like;
-    setLike(newLikeState);
-
-    if (newLikeState) {
-      addItem();
-    } else {
-      removeItem();
-    }
+    dispatch({
+      type: like ? "remove_from_fav" : "add_to_fav",
+      payload: item,
+    });
+    setLike(!like);
   };
 
   return (

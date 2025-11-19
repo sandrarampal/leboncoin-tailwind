@@ -5,24 +5,54 @@ import Categories from "./components/Categories";
 import OffersAll from "./components/OffersAll";
 import Footer from "./components/Footer";
 import Modal from "./components/Modal";
-import { useState, useMemo, useCallback } from "react";
-import type { OfferItem } from "./types";
+import { useState, useMemo, useCallback, useReducer } from "react";
+import type { OfferItem, TState, TAction } from "./types";
 import calculateTotal from "./utils/calculateTotal";
 
+const favReducer = (state: TState, action: TAction) => {
+  switch (action.type) {
+    case "add_to_fav":
+      const newFav: OfferItem[] = [...state.fav, action.payload];
+      return {
+        ...state,
+        fav: newFav,
+        total: calculateTotal(newFav),
+      };
+
+    case "remove_from_fav":
+      const newFavRemove: OfferItem[] = state.fav.filter(
+        (elem) => elem.title !== action.payload.title,
+      );
+      return {
+        ...state,
+        fav: newFavRemove,
+        total: calculateTotal(newFavRemove),
+      };
+    default:
+      return state;
+  }
+};
+
 function App() {
-  const [fav, setFav] = useState<OfferItem[] | []>([]);
+  // const [fav, setFav] = useState<OfferItem[] | []>([]);
   const [darkMode, setDarkMode] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
-  const total = useMemo(() => calculateTotal(fav), [fav]);
+  // const total = useMemo(() => calculateTotal(fav), [fav]);
 
-  const addToFav = useCallback((item: OfferItem): void => {
-    setFav((prev) => [...prev, item]);
-  }, []);
+  // const addToFav = useCallback((item: OfferItem): void => {
+  //   setFav((prev) => [...prev, item]);
+  // }, []);
 
-  const removeFromFav = useCallback((item: OfferItem): void => {
-    setFav((prev) => prev.filter((favItem) => favItem.title !== item.title));
-  }, []);
+  // const removeFromFav = useCallback((item: OfferItem): void => {
+  //   setFav((prev) => prev.filter((favItem) => favItem.title !== item.title));
+  // }, []);
+
+  const [{ fav, total }, dispatch] = useReducer(favReducer, {
+    fav: [],
+    total: 0,
+  });
+
   return (
     <div className={`${darkMode ? "bg-blue-dark" : ""}`}>
       <Header
@@ -34,12 +64,7 @@ function App() {
       <Container>
         <SellBar />
         <Categories darkMode={darkMode} />
-        <OffersAll
-          addToFav={addToFav}
-          removeFromFav={removeFromFav}
-          setFav={setFav}
-          darkMode={darkMode}
-        />
+        <OffersAll dispatch={dispatch} darkMode={darkMode} />
       </Container>
       <Footer />
       {showModal && (

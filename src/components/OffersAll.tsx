@@ -3,12 +3,7 @@ import Offers from "./Offers";
 import type { OffersAllProps } from "../types";
 import { memo } from "react";
 
-const OffersAll = ({
-  addToFav,
-  removeFromFav,
-  setFav,
-  darkMode,
-}: OffersAllProps) => {
+const OffersAll = ({ dispatch, darkMode }: OffersAllProps) => {
   const tablets = data.products.tablets;
   const consols = data.products.consols;
 
@@ -22,17 +17,13 @@ const OffersAll = ({
       <Offers
         title="Tablettes & liseuses"
         items={tablets}
-        addToFav={addToFav}
-        removeFromFav={removeFromFav}
-        setFav={setFav}
+        dispatch={dispatch}
         darkMode={darkMode}
       />
       <Offers
         title="Consoles & jeux vidéo"
         items={consols}
-        addToFav={addToFav}
-        removeFromFav={removeFromFav}
-        setFav={setFav}
+        dispatch={dispatch}
         darkMode={darkMode}
       />
     </div>

@@ -6,13 +6,7 @@ import { useRef } from "react";
 import CarouselButton from "./CarouselButton";
 import { memo } from "react";
 
-const Offers = ({
-  title,
-  items,
-  addToFav,
-  removeFromFav,
-  darkMode,
-}: OffersProps) => {
+const Offers = ({ title, items, dispatch, darkMode }: OffersProps) => {
   const carouselRef = useRef<HTMLDivElement>(null);
 
   const handleScroll = () => {
@@ -59,9 +53,9 @@ const Offers = ({
                 </div>
 
                 <HeartIcon
-                  addItem={() => addToFav(item)}
-                  removeItem={() => removeFromFav(item)}
+                  dispatch={dispatch}
                   darkMode={darkMode}
+                  item={item}
                 />
               </div>
             </div>
