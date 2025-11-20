@@ -3,15 +3,16 @@ import { CiBellOn } from "react-icons/ci";
 import { FaRegHeart } from "react-icons/fa";
 import { MdOutlineMessage } from "react-icons/md";
 import { FiUser } from "react-icons/fi";
-import type { TFav, TSetShowModal, TSetDarkMode } from "../types";
+import type { TSetShowModal } from "../types";
+import useDarkModeContext from "../hooks/useDarkModeContext";
+import useFavoritesContext from "../hooks/useFavoritesContext";
 
-type TMenuIconsProps = TFav & TSetShowModal & TSetDarkMode;
+type TMenuIconsProps = TSetShowModal;
 
-export default function MenuIcons({
-  fav,
-  setShowModal,
-  setDarkMode,
-}: TMenuIconsProps) {
+export default function MenuIcons({ setShowModal }: TMenuIconsProps) {
+  const { fav } = useFavoritesContext();
+  const { setDarkMode } = useDarkModeContext();
+
   const numberofFav = fav.length;
 
   return (

@@ -5,9 +5,12 @@ import type { OffersProps } from "../types";
 import { useRef } from "react";
 import CarouselButton from "./CarouselButton";
 import { memo } from "react";
+import useDarkModeContext from "../hooks/useDarkModeContext";
 
-const Offers = ({ title, items, dispatch, darkMode }: OffersProps) => {
+const Offers = ({ title, items }: OffersProps) => {
   const carouselRef = useRef<HTMLDivElement>(null);
+
+  const { darkMode } = useDarkModeContext();
 
   const handleScroll = () => {
     carouselRef.current?.scrollTo({ left: 0, behavior: "smooth" });
@@ -52,11 +55,7 @@ const Offers = ({ title, items, dispatch, darkMode }: OffersProps) => {
                   <p>{item.date}</p>
                 </div>
 
-                <HeartIcon
-                  dispatch={dispatch}
-                  darkMode={darkMode}
-                  item={item}
-                />
+                <HeartIcon item={item} />
               </div>
             </div>
           );

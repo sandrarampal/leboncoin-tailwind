@@ -2,10 +2,12 @@ import data from "../assets/data/data.json";
 import type { TCategory } from "../types";
 import CarouselButton from "./CarouselButton";
 import { useRef } from "react";
+import useDarkModeContext from "../hooks/useDarkModeContext";
 
-export default function Categories({ darkMode }: { darkMode: boolean }) {
+export default function Categories() {
   const categories: TCategory[] = data.categories;
   const carouselRef = useRef<HTMLDivElement>(null);
+  const { darkMode } = useDarkModeContext();
 
   const handleScroll = () => {
     carouselRef.current?.scrollTo({ left: 0, behavior: "smooth" });

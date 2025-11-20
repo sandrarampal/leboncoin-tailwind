@@ -3,16 +3,18 @@ import { FaRegHeart } from "react-icons/fa";
 import { useState } from "react";
 import { memo } from "react";
 import type { OfferItem } from "../types";
+import useDarkModeContext from "../hooks/useDarkModeContext";
+import useFavoritesContext from "../hooks/useFavoritesContext";
 
 // Définir une interface pour les props
 interface HeartIconProps {
-  dispatch: React.Dispatch<any>;
-  darkMode: boolean;
   item: OfferItem;
 }
 
-const HeartIcon = ({ dispatch, darkMode, item }: HeartIconProps) => {
+const HeartIcon = ({ item }: HeartIconProps) => {
   const [like, setLike] = useState(false);
+  const { dispatch } = useFavoritesContext();
+  const { darkMode } = useDarkModeContext();
 
   const handleClick = () => {
     dispatch({

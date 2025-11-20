@@ -4,16 +4,14 @@ import Container from "./Container";
 import SearchIcon from "./SearchIcon";
 import Button from "./Button";
 import MenuIcons from "./MenuIcons";
-import type { TFav, TSetShowModal, TSetDarkMode } from "../types";
+import type { TSetShowModal } from "../types";
+import useDarkModeContext from "../hooks/useDarkModeContext";
 
-type THeaderProps = TFav & TSetShowModal & TSetDarkMode & { darkMode: boolean };
+type THeaderProps = TSetShowModal;
 
-export default function Header({
-  fav,
-  setShowModal,
-  setDarkMode,
-  darkMode,
-}: THeaderProps) {
+export default function Header({ setShowModal }: THeaderProps) {
+  const { darkMode } = useDarkModeContext();
+
   return (
     <div
       className={`border-grey-light border-b pt-3 pb-3 ${darkMode ? "bg-blue-dark text-white" : ""}`}
@@ -36,11 +34,7 @@ export default function Header({
             />
           </div>
           <div className="hidden h-full lg:block lg:overflow-hidden">
-            <MenuIcons
-              fav={fav}
-              setShowModal={setShowModal}
-              setDarkMode={setDarkMode}
-            />
+            <MenuIcons setShowModal={setShowModal} />
           </div>
         </div>
         <ul className="hide-scrollbar flex items-center gap-4 overflow-scroll pt-3 text-xs">

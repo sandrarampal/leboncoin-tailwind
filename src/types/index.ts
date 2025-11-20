@@ -22,24 +22,13 @@ export type TFav = {
   fav: OfferItem[];
 };
 
-export type OffersAllProps = {
-  dispatch: React.Dispatch<any>;
-  darkMode: boolean;
-};
-
 export type OffersProps = {
   title: string;
   items: OfferItem[];
-  dispatch: React.Dispatch<any>;
-  darkMode: boolean;
 };
 
 export type TSetShowModal = {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
-};
-
-export type TSetDarkMode = {
-  setDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export type TState = {

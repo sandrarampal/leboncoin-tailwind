@@ -1,9 +1,12 @@
 import data from "../assets/data/data.json";
 import Offers from "./Offers";
-import type { OffersAllProps } from "../types";
 import { memo } from "react";
 
-const OffersAll = ({ dispatch, darkMode }: OffersAllProps) => {
+import useDarkModeContext from "../hooks/useDarkModeContext";
+
+const OffersAll = () => {
+  const { darkMode } = useDarkModeContext();
+
   const tablets = data.products.tablets;
   const consols = data.products.consols;
 
@@ -14,18 +17,8 @@ const OffersAll = ({ dispatch, darkMode }: OffersAllProps) => {
       >
         En ce moment sur leboncoin
       </h1>
-      <Offers
-        title="Tablettes & liseuses"
-        items={tablets}
-        dispatch={dispatch}
-        darkMode={darkMode}
-      />
-      <Offers
-        title="Consoles & jeux vidéo"
-        items={consols}
-        dispatch={dispatch}
-        darkMode={darkMode}
-      />
+      <Offers title="Tablettes & liseuses" items={tablets} />
+      <Offers title="Consoles & jeux vidéo" items={consols} />
     </div>
   );
 };

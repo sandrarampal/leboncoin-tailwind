@@ -1,11 +1,8 @@
-import type { OfferItem } from "../types";
+import useFavoritesContext from "../hooks/useFavoritesContext";
 
-type TModalProps = {
-  fav: OfferItem[];
-  total: number;
-};
+export default function Modal() {
+  const { fav, total } = useFavoritesContext();
 
-export default function Modal({ fav, total }: TModalProps) {
   return (
     <div
       className="fixed top-1/2 left-1/2 z-50 max-h-[80vh] w-11/12 max-w-md -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-lg bg-white p-6 opacity-100 shadow-lg"
